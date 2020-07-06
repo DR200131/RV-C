@@ -11,7 +11,7 @@ package Data_Structures;
  */
 public class Cola_prioridad {
     private int[] Cola;
-    private int C_datos; 
+    private int C_datos;
     private int tamaño; 
 
     private static final int frente = 1; 
@@ -19,7 +19,7 @@ public class Cola_prioridad {
     public Cola_prioridad(int tamaño) { 
         this.tamaño = tamaño; 
         this.C_datos = 0; 
-        Cola = new int[this.tamaño + 1]; 
+        Cola = new int[this.tamaño + 1];
         Cola[0] = Integer.MIN_VALUE; 
     } 
 
@@ -36,7 +36,7 @@ public class Cola_prioridad {
     } 
 
     private boolean es_hoja(int pos){ 
-        if (pos >= (C_datos / 2) && pos <= C_datos) { 
+        if (pos > (C_datos / 2) && pos <= C_datos) { 
             return true; 
         } 
         return false; 
@@ -52,7 +52,7 @@ public class Cola_prioridad {
     private void ubicar(int pos) { 
         if (!es_hoja(pos)) { 
             if (Cola[pos] > Cola[hijo_I(pos)] || Cola[pos] > Cola[hijo_D(pos)]){ 
-                if(Cola[hijo_I(pos)] < Cola[hijo_D(pos)]) { 
+                if(Cola[hijo_I(pos)] < Cola[hijo_D(pos)]) {
                     cambio(pos, hijo_I(pos)); 
                     ubicar(hijo_I(pos)); 
                 }  
@@ -62,7 +62,11 @@ public class Cola_prioridad {
                 } 
             } 
         } 
-    } 
+    }
+
+    public int getC_datos() {
+        return C_datos;
+    }
 
     public void insertar(int dato) 
     { 
@@ -70,11 +74,11 @@ public class Cola_prioridad {
             return; 
         } 
         Cola[++C_datos] = dato; 
-        int actual = C_datos; 
+        int actual = C_datos;
 
         while (Cola[actual] < Cola[padre(actual)]) { 
-            cambio(actual, padre(actual)); 
-            actual = padre(actual); 
+            cambio(actual, padre(actual));
+            actual = padre(actual);
         } 
     } 
 

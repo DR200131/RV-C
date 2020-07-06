@@ -58,7 +58,7 @@ public class SubmenuVC extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 229, 181));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Webp.net-resizeimage_6.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/dinero.png"))); // NOI18N
         jLabel6.setText("Ventas");
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -68,7 +68,7 @@ public class SubmenuVC extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Leelawadee", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 229, 181));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Webp.net-resizeimage_7.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/talonario-de-cheques.png"))); // NOI18N
         jLabel7.setText("Compras");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,7 +121,7 @@ public class SubmenuVC extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

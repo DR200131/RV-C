@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Conexion.MySql;
 import Data_Structures.*;
 import java.util.*;
 import javax.swing.*;
@@ -46,12 +47,13 @@ public class RegistroCompras extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         tfun7 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
 
         jLabel4.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 229, 181));
@@ -123,18 +125,10 @@ public class RegistroCompras extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 229, 181));
         jLabel5.setText("R V-C");
 
-        jLabel9.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 229, 181));
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Back.png"))); // NOI18N
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
-            }
-        });
-
         tfun7.setBackground(new java.awt.Color(40, 40, 40));
         tfun7.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
         tfun7.setForeground(new java.awt.Color(255, 255, 255));
+        tfun7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfun7.setToolTipText("");
         tfun7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         tfun7.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -154,12 +148,46 @@ public class RegistroCompras extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(0, 229, 181));
         jLabel16.setText("Total:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jButton4.setBackground(new java.awt.Color(153, 153, 153));
+        jButton4.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(0, 153, 153));
+        jButton4.setText("+");
+        jButton4.setToolTipText("Agregar fila");
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(153, 153, 153));
+        jButton3.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 153, 153));
+        jButton3.setText("-");
+        jButton3.setToolTipText("Eliminar fila(s) selecionada(s)");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Proveedor", "Nombre del producto", "Categoría", "Precio de compra", "Código Serial", "Fecha de vencimiento", "Cantidad comprada", "Precio de venta"
+                "Proveedor", "Nombre del Producto", "Categoría", "Precio de compra", "Código serial", "Fecha de vencimiento", "Cantidad comprada", "Precio de venta"
             }
         ) {
             Class[] types = new Class [] {
@@ -170,21 +198,19 @@ public class RegistroCompras extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-
-        jButton2.setBackground(new java.awt.Color(153, 153, 153));
-        jButton2.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 153, 153));
-        jButton2.setText("Agregar fila");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTable2MouseEntered(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        jScrollPane2.setViewportView(jTable2);
+
+        jLabel9.setFont(new java.awt.Font("Leelawadee", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 229, 181));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Back.png"))); // NOI18N
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
             }
         });
 
@@ -198,67 +224,66 @@ public class RegistroCompras extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)
-                        .addGap(295, 295, 295)))
+                        .addGap(284, 284, 284)))
                 .addComponent(jLabel9))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 63, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(439, 439, 439))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(425, 425, 425)
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 879, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton4)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(366, 366, 366)
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
+                        .addGap(66, 66, 66)
                         .addComponent(tfun7, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jButton2)))
+                        .addGap(426, 426, 426)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(62, 62, 62))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5))
+                    .addComponent(jLabel9)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfun7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfun7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
                 .addComponent(jButton1)
-                .addGap(31, 31, 31))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -298,48 +323,88 @@ public class RegistroCompras extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         try{
+            boolean r = false;
             float total = 0;
             String prove = "";
-            Date fecha = new Date();
-            String fec = String.valueOf(fecha);
+            String fecha = String.valueOf(java.time.LocalDate.now());
             ListaEnlazada le = new ListaEnlazada();
-            Logic.Inventario in = new Logic.Inventario();
-            for(int i = 0; i <= jTable1.getRowCount();i++){
-                prove = String.valueOf(jTable1.getValueAt(i, 0));
-                String nombrep = String.valueOf(jTable1.getValueAt(i, 1));
-                String catego = String.valueOf(jTable1.getValueAt(i, 2));
-                float pre_com = Float.parseFloat(String.valueOf(jTable1.getValueAt(i, 3)));
-                float pre_ven = Float.parseFloat(String.valueOf(jTable1.getValueAt(i, 7)));
-                int cod_ser = Integer.parseInt(String.valueOf(jTable1.getValueAt(i, 4)));
-                String fecha_ven = String.valueOf(jTable1.getValueAt(i, 5));
-                int cantidad = Integer.parseInt(String.valueOf(jTable1.getValueAt(i, 6)));
+            for(int i = 0; i < jTable2.getRowCount();i++){
+                prove = String.valueOf(jTable2.getValueAt(i, 0));
+                String nombrep = String.valueOf(jTable2.getValueAt(i, 1));
+                String catego = String.valueOf(jTable2.getValueAt(i, 2));
+                float pre_com = Float.parseFloat(String.valueOf(jTable2.getValueAt(i, 3)));
+                float pre_ven = Float.parseFloat(String.valueOf(jTable2.getValueAt(i, 7)));
+                int cod_ser = Integer.parseInt(String.valueOf(jTable2.getValueAt(i, 4)));
+                String fecha_ven = String.valueOf(jTable2.getValueAt(i, 5));
+                int cantidad = Integer.parseInt(String.valueOf(jTable2.getValueAt(i, 6)));
                 Producto pr = new Producto(nombrep, catego, pre_com, pre_ven, cod_ser, prove, fecha_ven, cantidad);
                 total = total + (pre_com * cantidad);
                 le.agregarAtras(pr);
-                in.inven(pr);
+                MySql ms = new MySql();
+                r = ms.RegistroC(prove, nombrep, catego, pre_com, cod_ser, fecha_ven, cantidad, pre_ven, total, fecha);
             }
-            JOptionPane.showConfirmDialog(null, "Registrado con exito.");
-            tfun7.setText(String.valueOf(total));
-            Venta_Compra comp = new Venta_Compra();
-            comp.ListaCompra(prove, total, fec, le);
+            if(r == true){
+            JOptionPane.showMessageDialog(null, "Registrado con exito.");
+                tfun7.setText(String.valueOf(total));
+                Venta_Compra comp = new Venta_Compra();
+                comp.ListaCompra(prove, total, fecha, le);
+                DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+                int filas = jTable2.getRowCount();
+                for (int i = 0;filas>i; i++) {
+                    model.removeRow(0);
+                }
+                tfun7.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Algun dato requerido no fue ingresado. Verifique y vuelva a intentar.");
+            }
         }
         catch(Exception e){
+            System.out.println(e);
             JOptionPane.showMessageDialog(null, "Algun dato requerido no fue ingresado. Verifique y vuelva a intentar.");
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        modelo = (DefaultTableModel)this.jTable1.getModel();
-        modelo.addRow(new Object[]{"","","","","","",""});
-    }//GEN-LAST:event_jButton2MouseClicked
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        Vector row = new Vector();
+        row.add("");
+        row.add("");
+        row.add("");
+        row.add(0.0);
+        row.add(0);
+        row.add("");
+        row.add(0);
+        row.add(0.0);
+        model.addRow(row);
+    }//GEN-LAST:event_jButton4MouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        int[] rows = jTable2.getSelectedRows();
+        for(int i=0;i<rows.length;i++){
+            model.removeRow(rows[i]-i);
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTable2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseEntered
+        float total = 0;
+        for(int i = 0; i < jTable2.getRowCount();i++){
+            float dato = Float.parseFloat(String.valueOf(jTable2.getValueAt(i, 3)));
+            int cant = Integer.parseInt(String.valueOf(jTable2.getValueAt(i, 6)));
+            total = total + (dato * cant);
+        }
+        tfun7.setText(String.valueOf(total));
+    }//GEN-LAST:event_jTable2MouseEntered
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -375,7 +440,8 @@ public class RegistroCompras extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     public static javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
@@ -383,8 +449,8 @@ public class RegistroCompras extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField tfun1;
     private javax.swing.JTextField tfun7;

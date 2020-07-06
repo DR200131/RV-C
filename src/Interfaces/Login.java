@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Conexion.MySql;
 import Interfaces.*;
 import javax.swing.JOptionPane;
 import java.util.*;
@@ -241,17 +242,13 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-    private String[] user1 = {"Admin", "1234", "Administrador"};
-    private String[] user2 = {"Employee", "abcd", "Empleado"};
+
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String u = tfun1.getText();
         String p = tfp1.getText();
-        if(u.equals(user1[0]) && p.equals(user1[1]) && this.tipo_users.equals(user1[2])){
-            Menú m = new Menú();
-            m.setVisible(true);
-            this.setVisible(false);
-        }
-        else if (u.equals(user2[0]) && p.equals(user2[1]) && this.tipo_users.equals(user2[2])){
+        MySql c = new MySql();
+        boolean l = c.login(u, p, this.tipo_users);
+        if(l == true){
             Menú m = new Menú();
             m.setVisible(true);
             this.setVisible(false);

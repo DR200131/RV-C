@@ -4,12 +4,7 @@
  * and open the template in the editor.
  */
 package Logic;
-import Data_Structures.ArbolAVL;
-import Data_Structures.ListaEnlazada;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import Data_Structures.*;
 /**
  *
  * @author Juan Pablo
@@ -17,6 +12,7 @@ import java.io.IOException;
 public class Inventario {
     private ListaEnlazada productos_l = new ListaEnlazada();
     private ArbolAVL productos_a = new ArbolAVL();
+    private HashTable<Integer, Producto> productos_t = new HashTable<Integer, Producto>();
     
     public ListaEnlazada getListaInventario(){
         return productos_l;
@@ -64,15 +60,6 @@ public class Inventario {
         return productos_a;
     }
     
-    public void inven (Producto prod) throws IOException{
-        File f1 =  new File("C:\\Users\\Usuario\\Desktop\\Datos\\Datos_Inventario.txt");
-        FileWriter fw = new FileWriter(f1);
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(prod.getProveedor()+" "+prod.getNombre()+" "+prod.getCategoria()+" "+prod.getPrecio_compra()+" "+prod.getCodigo_serial()+" "+prod.getFecha_vencimiento()+" "+prod.getCantidad()+" "+prod.getPrecio_venta());
-        bw.newLine();
-        bw.close();
-    }
-    
     public void setArbolInventario(ArbolAVL inv){
         this.productos_a = inv;
     }
@@ -101,4 +88,44 @@ public class Inventario {
             return prod; 
         }
     }
+
+    public HashTable<Integer, Producto> getHashInventario() {
+        return productos_t;
+    }
+
+    public void setHashInventario(HashTable<Integer, Producto> productos_t) {
+        this.productos_t = productos_t;
+    }
+    
+    public HashTable<Integer, Producto> añadirHash(Producto prod){
+        productos_t.put(prod.getCodigo_serial()-10000000, prod);
+        return productos_t;
+    }
+    
+    public HashTable<Integer, Producto> quitarHash(Producto prod){
+        productos_t.remove(prod.getCodigo_serial()-10000000);
+        return productos_t;
+    }
+    
+    public void imprimeHashInventario(){
+        int tamaño = productos_t.size();
+        int i = 0;
+        while(tamaño>0){
+            if (productos_t.getTable()[i] != null){
+                System.out.println(productos_t.getTable()[i].getVal());
+                tamaño--;
+            }
+            i++;
+        }
+    }
+    
+    public Producto buscarHashSerial(int serial){
+        Producto n = productos_t.get(serial-10000000);
+        if (n != null){
+            return n;
+        }else{
+            return null;
+        }
+    }
+    
 }
