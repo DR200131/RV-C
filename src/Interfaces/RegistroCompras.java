@@ -344,7 +344,7 @@ public class RegistroCompras extends javax.swing.JFrame {
                 r = ms.RegistroC(prove, nombrep, catego, pre_com, cod_ser, fecha_ven, cantidad, pre_ven, total, fecha);
             }
             if(r == true){
-            JOptionPane.showMessageDialog(null, "Registrado con exito.");
+                JOptionPane.showMessageDialog(null, "Registrado con exito.");
                 tfun7.setText(String.valueOf(total));
                 Venta_Compra comp = new Venta_Compra();
                 comp.ListaCompra(prove, total, fecha, le);
